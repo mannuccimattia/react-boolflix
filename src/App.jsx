@@ -36,20 +36,23 @@ const App = () => {
       </form>
 
       <div className="row">
-        <div className="col-12 col-md-6 col-lg-4">
+        <div>
           {!movies ? (
-            <div>loading</div>
+            <div className="col-12">Nessun film cercato</div>
           ) : (
-            <>
+            <div className="col-12 d-flex flex-wrap">
               {movies.map(movie => (
-                <div className="card" key={movie.id}>
+                <div className="card w-25" key={movie.id}>
                   <div className="card-title">Titolo: {movie.title}</div>
                   <div className="card-title">TitoloOriginale: {movie.original_title}</div>
-                  <div className="card-text">Lingua: {movie.original_language}</div>
+                  <div className="card-text">
+                    Lingua:
+                    <span className={`fi fi-${movie.original_language}`}></span>({movie.original_language.toUpperCase()})
+                  </div>
                   <div className="card-text">Voto: {movie.vote_average}</div>
                 </div>
               ))}
-            </>
+            </div>
           )}
         </div>
       </div>

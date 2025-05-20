@@ -19,7 +19,7 @@ const SearchBar = ({
 
 
 
-      <nav className="container-fluid bg-body-tertiary p-2">
+      <nav className="container-fluid bg-dark text-white py-2">
         <div className="row justify-content-between align-items-center">
           <div className="col-auto d-flex justify-content-start align-items-center">
             <img src="../src/assets/logo.png" alt="logo" />
@@ -32,18 +32,18 @@ const SearchBar = ({
                 <input
                   type="text"
                   id="search"
-                  className="form-control"
+                  className="form-control bg-secondary border-0 text-white"
                   placeholder={`Cerca ${searchType === "movie" ? `Film` : `Serie TV`}...`}
                   value={searchTerm}
                   onChange={(e) => { setSearchTerm(e.target.value) }}
                 />
-                <button className="btn btn-primary">Vai!</button>
+                <button className="btn btn-success">Vai!</button>
               </div>
             </form>
           </div>
           <div className="col-auto">
             <button
-              className="btn btn-primary me-2"
+              className="btn btn-success me-2"
               value="movie"
               disabled={searchType === "movie"}
               onClick={handleSearchType}
@@ -51,7 +51,7 @@ const SearchBar = ({
               Movies
             </button>
             <button
-              className="btn btn-primary"
+              className="btn btn-success"
               value="tv"
               disabled={searchType === "tv"}
               onClick={handleSearchType}

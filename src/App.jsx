@@ -34,22 +34,22 @@ const App = () => {
         />
       </header>
 
-      <div className="row mt-5">
-        <div>
-          {!list ? (
-            <div className="col-12 text-center">
+      <div className="container">
+        {!list ? (
+          <div className="row">
+            <div className="col-12 text-center text-secondary">
               <i className="fa-solid fa-face-sad-tear display-1 my-3"></i>
               <h4>Niente da mostrare</h4>
               <span>Cerca qualcosa...</span>
             </div>
-          ) : (
-            <div className="col-12 d-flex flex-wrap">
-              {list.map(item => (
-                <ListItem key={item.id} item={item} />
-              ))}
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="row">
+            {list.map(item => (
+              <ListItem key={item.id} item={item} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   )

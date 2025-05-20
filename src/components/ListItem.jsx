@@ -25,8 +25,6 @@ const List = ({ item }) => {
 
   const handleVote = (item) => {
     let vote = parseInt(Math.ceil(item.vote_average)) / 2
-    // return vote
-
 
     if (vote <= 1) {
       return <span>

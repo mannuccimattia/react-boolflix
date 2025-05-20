@@ -23,22 +23,23 @@ const App = () => {
 
   return (
     <>
-      <h1>Hello React</h1>
+      <header>
+        <SearchBar
+          searchTerm={searchTerm}
+          searchType={searchType}
+          setSearchTerm={setSearchTerm}
+          setSearchType={setSearchType}
+          setList={setList}
+          handleSearchSubmit={handleSearchSubmit}
+        />
+      </header>
 
-      <SearchBar
-        searchTerm={searchTerm}
-        searchType={searchType}
-        setSearchTerm={setSearchTerm}
-        setSearchType={setSearchType}
-        setList={setList}
-        handleSearchSubmit={handleSearchSubmit}
-      />
-
-      <div className="row">
+      <div className="row mt-5">
         <div>
           {!list ? (
-            <div className="col-12">
-              <h4>Niente da mostrare {`:(`}</h4>
+            <div className="col-12 text-center">
+              <i className="fa-solid fa-face-sad-tear display-1 my-3"></i>
+              <h4>Niente da mostrare</h4>
               <span>Cerca qualcosa...</span>
             </div>
           ) : (

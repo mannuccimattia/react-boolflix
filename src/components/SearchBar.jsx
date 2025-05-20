@@ -16,38 +16,51 @@ const SearchBar = ({
 
   return (
     <>
-      <div>
-        Stai cercando {
-          searchType === "movie" ? `Film` : `Serie TV`}
-      </div>
 
-      <form onSubmit={handleSearchSubmit}>
-        <button
-          className="btn btn-primary"
-          value="movie"
-          disabled={searchType === "movie"}
-          onClick={handleSearchType}
-        >
-          Movies
-        </button>
-        <button
-          className="btn btn-primary"
-          value="tv"
-          disabled={searchType === "tv"}
-          onClick={handleSearchType}
-        >
-          TV Series
-        </button>
 
-        <label htmlFor="search">Search:</label>
-        <input
-          type="text"
-          id="search"
-          value={searchTerm}
-          onChange={(e) => { setSearchTerm(e.target.value) }}
-        />
-        <button>Go!</button>
-      </form>
+
+      <nav className="container-fluid bg-body-tertiary p-2">
+        <div className="row justify-content-between align-items-center">
+          <div className="col-auto d-flex justify-content-start align-items-center">
+            <img src="../src/assets/logo.png" alt="logo" />
+            <h3>CarribeFlix</h3>
+          </div>
+
+          <div className="col-12 col-md-6 text-center my-2">
+            <form onSubmit={handleSearchSubmit}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  id="search"
+                  className="form-control"
+                  placeholder={`Cerca ${searchType === "movie" ? `Film` : `Serie TV`}...`}
+                  value={searchTerm}
+                  onChange={(e) => { setSearchTerm(e.target.value) }}
+                />
+                <button className="btn btn-primary">Vai!</button>
+              </div>
+            </form>
+          </div>
+          <div className="col-auto">
+            <button
+              className="btn btn-primary me-2"
+              value="movie"
+              disabled={searchType === "movie"}
+              onClick={handleSearchType}
+            >
+              Movies
+            </button>
+            <button
+              className="btn btn-primary"
+              value="tv"
+              disabled={searchType === "tv"}
+              onClick={handleSearchType}
+            >
+              TV Series
+            </button>
+          </div>
+        </div>
+      </nav>
     </>
   )
 }

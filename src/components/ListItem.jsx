@@ -21,16 +21,55 @@ const List = ({ item }) => {
       default:
         return lang;
     }
-
-    // if (lang === "en") {
-    //   return "gb"
-    // }
-    // if (lang === "ja") {
-    //   return "jp"
-    // }
-
-    // return lang.toLowerCase()
   }
+
+  const handleVote = (item) => {
+    let vote = parseInt(Math.ceil(item.vote_average)) / 2
+    // return vote
+
+
+    if (vote <= 1) {
+      return <span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </span>;
+    } else if (vote <= 2) {
+      return <span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </span>;
+    } else if (vote <= 3) {
+      return <span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </span>;
+    } else if (vote <= 4) {
+      return <span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+      </span>;
+    } else {
+      return <span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </span>;
+    }
+  };
 
   return (
     <div className="card w-25">
@@ -57,7 +96,7 @@ const List = ({ item }) => {
       </div>
       <div className="card-text">
         {`Voto:`}
-        {item.vote_average}
+        {handleVote(item)}
       </div>
     </div>
   )

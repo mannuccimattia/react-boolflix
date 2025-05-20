@@ -1,5 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useState } from "react"
+
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
 
@@ -13,54 +15,22 @@ const App = () => {
 
     const endPoint = `https://api.themoviedb.org/3/search/${searchType}?api_key=ddbf93c1fe82b9fa010c3cd4b41c556f&query=${searchTerm}`
 
-    // const endPoint = `https://api.themoviedb.org/3/search/movie?api_key=ddbf93c1fe82b9fa010c3cd4b41c556f&query=${searchTerm}`;
-
     axios.get(endPoint).then(res => setList(res.data.results));
   };
-
-  const handleSearchType = (e) => {
-    e.preventDefault()
-    setSearchType(e.target.value)
-    setList(null)
-  }
 
 
   return (
     <>
       <h1>Hello React</h1>
 
-      <div>
-        Stai cercando {
-          searchType === "movie" ? `Film` : `Serie TV`}
-      </div>
-
-      <form onSubmit={handleSearchSubmit}>
-        <button
-          className="btn btn-primary"
-          value="movie"
-          disabled={searchType === "movie"}
-          onClick={handleSearchType}
-        >
-          Movies
-        </button>
-        <button
-          className="btn btn-primary"
-          value="tv"
-          disabled={searchType === "tv"}
-          onClick={handleSearchType}
-        >
-          TV Series
-        </button>
-
-        <label htmlFor="search">Search:</label>
-        <input
-          type="text"
-          id="search"
-          value={searchTerm}
-          onChange={(e) => { setSearchTerm(e.target.value) }}
-        />
-        <button>Go!</button>
-      </form>
+      <SearchBar
+        searchTerm={searchTerm}
+        searchType={searchType}
+        setSearchTerm={setSearchTerm}
+        setSearchType={setSearchType}
+        setList={setList}
+        handleSearchSubmit={handleSearchSubmit}
+      />
 
       <div className="row">
         <div>

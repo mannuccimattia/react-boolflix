@@ -10,7 +10,7 @@ const App = () => {
   // variabile di stato per gestire il tipo di ricerca (default: movie)
   const [searchType, setSearchType] = useState("movie");
   // variabile di stato per gestire il filtro per genere
-  const [genreFilter, setGenreFilter] = useState("")
+  const [genreFilter, setGenreFilter] = useState(null)
   // variabile di stato per gestire la lista di film/serie
   const [list, setList] = useState(null);
 

@@ -80,7 +80,7 @@ const SearchBar = ({
           </div>
 
         </nav>
-        <div className="container-fluid bg-secondary  border-bottom border-dark">
+        <div className="container-fluid bg-secondary border-bottom border-dark" id="genresSearch">
           <div className="container">
             <SearchByGenre />
           </div>

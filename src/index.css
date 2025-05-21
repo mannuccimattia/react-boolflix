@@ -78,4 +78,5 @@ header img {
 
 .gen-btn {
   min-width: 150px;
+  transform: scale(0.90);
 }

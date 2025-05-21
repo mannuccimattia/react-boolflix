@@ -75,3 +75,7 @@ header img {
   font-weight: 500;
   color: #198754;
 }
+
+.gen-btn {
+  min-width: 150px;
+}

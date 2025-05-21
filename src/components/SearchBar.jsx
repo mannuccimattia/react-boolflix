@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useContext } from "react";
 import SearchTypeContext from "../contexts/SearchTypeContext";
+import SearchByGenre from "./SearchByGenre";
 
 const SearchBar = ({
   setList,
@@ -77,7 +78,13 @@ const SearchBar = ({
               </button>
             </div>
           </div>
+
         </nav>
+        <div className="container-fluid bg-secondary  border-bottom border-dark">
+          <div className="container">
+            <SearchByGenre />
+          </div>
+        </div>
       </header>
     </>
   )

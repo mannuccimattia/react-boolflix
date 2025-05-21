@@ -1,6 +1,5 @@
 import SearchBar from "./components/SearchBar";
 import { useState } from "react"
-
 import ListContext from "./contexts/ListContext";
 import SearchTypeContext from "./contexts/SearchTypeContext";
 import Main from "./components/Main";

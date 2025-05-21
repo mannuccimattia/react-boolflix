@@ -80,3 +80,10 @@ header img {
   min-width: 150px;
   transform: scale(0.90);
 }
+
+html {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #198754 #555;
+  scroll-behavior: smooth;
+}

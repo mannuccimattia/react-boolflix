@@ -6,8 +6,7 @@ import SearchTypeContext from "../contexts/SearchTypeContext";
 const ListItem = ({ item }) => {
 
   // utilizzo il contesto SearchTypeContext destrutturandolo
-  const SearchType = useContext(SearchTypeContext)
-  const { searchType } = SearchType;
+  const { searchType } = useContext(SearchTypeContext)
 
   // paths delle immagini dei poster
   const imgURL = `https://image.tmdb.org/t/p/w780${item.poster_path}`
@@ -23,32 +22,19 @@ const ListItem = ({ item }) => {
     const lang = item.original_language.toLowerCase();
 
     switch (lang) {
-      case "en":
-        return "us";
-      case "ja":
-        return "jp";
-      case "zh":
-        return "cn";
-      case "ko":
-        return "kr";
-      case "cs":
-        return "cz";
-      case "da":
-        return "dk";
-      case "ur":
-        return "pk";
-      case "hi":
-        return "in";
-      case "ab":
-        return "ge";
-      case "ka":
-        return "ge";
-      case "el":
-        return "gr";
-      case "he":
-        return "il";
-      default:
-        return lang;
+      case "en": return "us";
+      case "ja": return "jp";
+      case "zh": return "cn";
+      case "ko": return "kr";
+      case "cs": return "cz";
+      case "da": return "dk";
+      case "ur": return "pk";
+      case "hi": return "in";
+      case "ab": return "ge";
+      case "ka": return "ge";
+      case "el": return "gr";
+      case "he": return "il";
+      default: return lang;
     }
   }
 
@@ -159,9 +145,9 @@ const ListItem = ({ item }) => {
                 className="btn btn-outline-success btn-sm"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target={`#collapseCast-${item.id}`}
+                data-bs-target={`#collapseInfo-${item.id}`}
                 aria-expanded="false"
-                aria-controls={`collapseCast-${item.id}`}
+                aria-controls={`collapseInfo-${item.id}`}
                 value={item.id}
                 onClick={handleMovieInfo}
               >
@@ -174,7 +160,7 @@ const ListItem = ({ item }) => {
                 {item.overview || "Nessuna descrizione disponibile"}
               </div>
             </div>
-            <div className="collapse" id={`collapseCast-${item.id}`}>
+            <div className="collapse" id={`collapseInfo-${item.id}`}>
               <div className="card-body">
                 <h6>Cast:</h6>
                 {(!cast) ? (

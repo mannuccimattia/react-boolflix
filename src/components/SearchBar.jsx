@@ -4,13 +4,10 @@ import { useContext } from "react";
 import SearchTypeContext from "../contexts/SearchTypeContext";
 import SearchByGenre from "./SearchByGenre";
 
-const SearchBar = ({
-  setList,
-}) => {
+const SearchBar = ({ setList }) => {
 
   // utilizzo il contesto SearchTypeContext destrutturandolo
-  const SearchType = useContext(SearchTypeContext)
-  const { searchType, setSearchType } = SearchType;
+  const { searchType, setSearchType } = useContext(SearchTypeContext)
 
   // variabile di stato per gestire la barra di ricerca
   const [searchTerm, setSearchTerm] = useState("");
@@ -91,4 +88,3 @@ const SearchBar = ({
 }
 
 export default SearchBar
-

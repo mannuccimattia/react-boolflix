@@ -7,7 +7,7 @@ const Main = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" id="main-container">
         {!list ? (
           <div className="row">
             <div className="col-12 text-center text-secondary">

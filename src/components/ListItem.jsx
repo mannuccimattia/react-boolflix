@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-const List = ({ item, searchType }) => {
+const ListItem = ({ item, searchType }) => {
 
   // paths delle immagini dei poster
   const imgURL = `https://image.tmdb.org/t/p/w780${item.poster_path}`
@@ -218,4 +218,4 @@ const List = ({ item, searchType }) => {
   )
 }
 
-export default List
+export default ListItem

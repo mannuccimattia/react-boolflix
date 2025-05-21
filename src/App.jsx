@@ -1,6 +1,9 @@
 import SearchBar from "./components/SearchBar";
-import ListItem from "./components/ListItem";
 import { useState } from "react"
+
+import List from "./components/List";
+import ListContext from "./contexts/ListContext";
+import Main from "./components/Main";
 
 const App = () => {
 
@@ -11,35 +14,19 @@ const App = () => {
 
   return (
     <>
-      <header>
+      <ListContext.Provider value={list}>
+
         <SearchBar
           searchType={searchType}
           setSearchType={setSearchType}
           setList={setList}
         />
-      </header>
 
-      <div className="container">
-        {!list ? (
-          <div className="row">
-            <div className="col-12 text-center text-secondary">
-              <i className="fa-solid fa-face-sad-tear display-1 my-3"></i>
-              <h4>Niente da mostrare</h4>
-              <span>Cerca qualcosa...</span>
-            </div>
-          </div>
-        ) : (
-          <div className="row">
-            {list.map(item => (
-              <ListItem
-                key={item.id}
-                item={item}
-                searchType={searchType}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+        <Main
+          searchType={searchType}
+        />
+
+      </ListContext.Provider>
     </>
   )
 }

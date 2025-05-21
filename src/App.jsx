@@ -1,8 +1,8 @@
 import SearchBar from "./components/SearchBar";
 import { useState } from "react"
 
-import List from "./components/List";
 import ListContext from "./contexts/ListContext";
+import SearchTypeContext from "./contexts/SearchTypeContext";
 import Main from "./components/Main";
 
 const App = () => {
@@ -14,19 +14,17 @@ const App = () => {
 
   return (
     <>
-      <ListContext.Provider value={list}>
+      <SearchTypeContext.Provider value={{ searchType, setSearchType }}>
 
-        <SearchBar
-          searchType={searchType}
-          setSearchType={setSearchType}
-          setList={setList}
-        />
+        <ListContext.Provider value={list}>
 
-        <Main
-          searchType={searchType}
-        />
+          <SearchBar setList={setList} />
 
-      </ListContext.Provider>
+          <Main />
+
+        </ListContext.Provider>
+
+      </SearchTypeContext.Provider>
     </>
   )
 }

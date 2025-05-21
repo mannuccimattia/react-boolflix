@@ -1,9 +1,14 @@
 import List from "./List";
 import { useContext } from "react";
 import ListContext from "../contexts/ListContext";
+import SearchTypeContext from "../contexts/SearchTypeContext";
 
-const Main = ({ searchType }) => {
+const Main = () => {
   const list = useContext(ListContext);
+
+  // utilizzo il contesto SearchTypeContext destrutturandolo
+  const SearchType = useContext(SearchTypeContext)
+  const { searchType } = SearchType;
 
   return (
     <>

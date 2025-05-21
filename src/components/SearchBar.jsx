@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
+import { useContext } from "react";
+import SearchTypeContext from "../contexts/SearchTypeContext";
 
 const SearchBar = ({
-  searchType,
-  setSearchType,
   setList,
 }) => {
+
+  // utilizzo il contesto SearchTypeContext destrutturandolo
+  const SearchType = useContext(SearchTypeContext)
+  const { searchType, setSearchType } = SearchType;
 
   // variabile di stato per gestire la barra di ricerca
   const [searchTerm, setSearchTerm] = useState("");

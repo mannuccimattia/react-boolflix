@@ -3,23 +3,15 @@ import { useState } from "react"
 
 const List = ({ item, searchType }) => {
 
-
-  /* ******************************************** */
-  /*                    RICORDA                   */
-  /* ******************************************** */
-  // PROVA imgURL, SE INCLUDE NULL -> BACKDROP, SE INCLUDE NULL -> PLACEHOLDER
-  /* ******************************************** */
-  /*                    RICORDA                   */
-  /* ******************************************** */
   const imgURL = `https://image.tmdb.org/t/p/w780${item.poster_path}`
   const imgBackdropURL = `https://image.tmdb.org/t/p/w780${item.backdrop_path}`
   const imgPlaceholder = `../src/assets/placeholder.png`
 
   const [cast, setCast] = useState(null);
-  const [movieID, setMovieID] = useState("");
+  const [genres, setGenres] = useState(null);
 
   const handleLangFlag = (item) => {
-    const lang = item.original_language.toLowerCase()
+    const lang = item.original_language.toLowerCase();
 
     switch (lang) {
       case "en":
@@ -40,61 +32,36 @@ const List = ({ item, searchType }) => {
   }
 
   const handleVote = (item) => {
-    let vote = parseInt(Math.ceil(item.vote_average)) / 2
+    let vote = parseInt(Math.ceil(item.vote_average)) / 2;
+    const stars = [];
 
-    if (vote <= 1) {
-      return <span>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-      </span>;
-    } else if (vote <= 2) {
-      return <span>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-      </span>;
-    } else if (vote <= 3) {
-      return <span>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-      </span>;
-    } else if (vote <= 4) {
-      return <span>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-regular fa-star"></i>
-      </span>;
-    } else {
-      return <span>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-      </span>;
+    const emptyStar = <i className="far fa-star"></i>;
+    const halfStar = <i className="far fa-star-half-stroke"></i>;
+    const fullStar = <i className="fas fa-star"></i>;
+
+    for (let i = 1; i <= 5; i++) {
+      (i <= vote) ? (stars.push(fullStar))
+        : (i == vote.toFixed(0) && vote % 2 !== 0) ? (stars.push(halfStar))
+          : stars.push(emptyStar);
     }
+
+    return stars;
   };
 
-  const handleMovieCast = (e) => {
+  const handleMovieInfo = (e) => {
     e.preventDefault();
 
-    setMovieID(e.target.value);
-    const endPoint = `https://api.themoviedb.org/3/${searchType}/${e.target.value}/credits?api_key=ddbf93c1fe82b9fa010c3cd4b41c556f`;
+    const castEndpoint = `https://api.themoviedb.org/3/${searchType}/${e.target.value}/credits?api_key=ddbf93c1fe82b9fa010c3cd4b41c556f`;
+    const genresEndPoint = `https://api.themoviedb.org/3/${searchType}/${e.target.value}?api_key=ddbf93c1fe82b9fa010c3cd4b41c556f`;
 
-    axios.get(endPoint).then(res => {
+    axios.get(castEndpoint).then(res => {
       const result = res.data.cast.slice(0, 5)
       setCast(result);
     });
+
+    axios.get(genresEndPoint).then(res => {
+      setGenres(res.data.genres);
+    })
   }
 
   return (
@@ -103,7 +70,11 @@ const List = ({ item, searchType }) => {
 
         <div className="card bg-dark text-success border-success">
           <img
-            src={imgURL || imgBackdropURL || imgPlaceholder}
+            src={
+              !imgURL.includes("null") ? (imgURL)
+                : !imgBackdropURL.includes("null") ? (imgBackdropURL)
+                  : imgPlaceholder
+            }
             alt="cover"
             className="card-img img-fluid"
           />
@@ -151,9 +122,9 @@ const List = ({ item, searchType }) => {
                 aria-expanded="false"
                 aria-controls={`collapseCast-${item.id}`}
                 value={item.id}
-                onClick={handleMovieCast}
+                onClick={handleMovieInfo}
               >
-                Cast
+                Info
               </button>
             </p>
             <div className="collapse" id={`collapseOverview-${item.id}`}>
@@ -165,7 +136,9 @@ const List = ({ item, searchType }) => {
             <div className="collapse" id={`collapseCast-${item.id}`}>
               <div className="card-body">
                 <h6>Cast:</h6>
-                {(!cast || cast.length == 0) ? (
+                {(!cast) ? (
+                  <div> . . . </div>
+                ) : (cast.length === 0) ? (
                   <div>Cast non disponibile</div>
                 ) : (
                   <ul className="list-unstyled ps-2">
@@ -173,6 +146,20 @@ const List = ({ item, searchType }) => {
                       <li key={pers.id}>{pers.name}</li>
                     ))}
                   </ul>
+                )}
+                {(!genres) ? (
+                  <div> . . . </div>
+                ) : (genres.length === 0) ? (
+                  <div>Genere non disponibile</div>
+                ) : (
+                  <div>
+                    <h6>Generi:</h6>
+                    {genres.map(elem => (
+                      <em key={elem.id} className="me-2">
+                        {elem.name}
+                      </em>
+                    ))}
+                  </div>
                 )}
               </div>
             </div>

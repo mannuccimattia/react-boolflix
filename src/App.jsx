@@ -1,36 +1,21 @@
-import axios from "axios";
-import { useState } from "react"
-
 import SearchBar from "./components/SearchBar";
 import ListItem from "./components/ListItem";
+import { useState } from "react"
 
 const App = () => {
 
-  const [searchTerm, setSearchTerm] = useState("");
+  // variabile di stato per gestire il tipo di ricerca (default: movie)
   const [searchType, setSearchType] = useState("movie");
+  // variabile di stato per gestire la lista di film/serie
   const [list, setList] = useState(null);
-
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-
-    const endPoint = `https://api.themoviedb.org/3/search/${searchType}?api_key=ddbf93c1fe82b9fa010c3cd4b41c556f&query=${searchTerm}`
-
-    axios.get(endPoint).then(res => setList(res.data.results));
-    setSearchTerm("")
-  };
-
 
   return (
     <>
       <header>
         <SearchBar
-          searchTerm={searchTerm}
           searchType={searchType}
-          setSearchTerm={setSearchTerm}
           setSearchType={setSearchType}
           setList={setList}
-          handleSearchSubmit={handleSearchSubmit}
         />
       </header>
 

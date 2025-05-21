@@ -1,18 +1,33 @@
+import axios from "axios";
+import { useState } from "react";
 
 const SearchBar = ({
-  searchTerm,
   searchType,
-  setSearchTerm,
   setSearchType,
   setList,
-  handleSearchSubmit
 }) => {
 
+  // variabile di stato per gestire la barra di ricerca
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+  // funzione che, al click del pulsante Movies o TV Series, assegna il valore rispettivo alla variabile searchType 
   const handleSearchType = (e) => {
     e.preventDefault()
     setSearchType(e.target.value)
     setList(null)
   }
+
+  // funzione che, al submit della searchbar, effettua una chiamata ajax all'endpoint definito con le variabili searchType e searchTerm
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    const endPoint = `https://api.themoviedb.org/3/search/${searchType}?api_key=ddbf93c1fe82b9fa010c3cd4b41c556f&query=${searchTerm}`
+
+    axios.get(endPoint).then(res => setList(res.data.results));
+    // svuoto la searchbar
+    setSearchTerm("")
+  };
 
   return (
     <>

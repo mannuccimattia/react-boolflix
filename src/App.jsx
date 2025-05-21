@@ -46,7 +46,11 @@ const App = () => {
         ) : (
           <div className="row">
             {list.map(item => (
-              <ListItem key={item.id} item={item} />
+              <ListItem
+                key={item.id}
+                item={item}
+                searchType={searchType}
+              />
             ))}
           </div>
         )}

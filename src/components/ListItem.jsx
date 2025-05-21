@@ -35,17 +35,25 @@ const List = ({ item, searchType }) => {
     let vote = parseInt(Math.ceil(item.vote_average)) / 2;
     const stars = [];
 
-    const emptyStar = <i className="far fa-star"></i>;
-    const halfStar = <i className="far fa-star-half-stroke"></i>;
-    const fullStar = <i className="fas fa-star"></i>;
+    const emptyStar = "far fa-star"
+    const halfStar = "far fa-star-half-stroke"
+    const fullStar = "fas fa-star"
 
     for (let i = 1; i <= 5; i++) {
-      (i <= vote) ? (stars.push(fullStar))
-        : (i == vote.toFixed(0) && vote % 2 !== 0) ? (stars.push(halfStar))
-          : stars.push(emptyStar);
+      (i <= vote)
+        ? (
+          stars.push(<i key={i} className={fullStar}></i>)
+        )
+        : (i == vote.toFixed(0) && vote % 1 !== 0)
+          ? (
+            stars.push(<i key={i} className={halfStar}></i>)
+          )
+          : (
+            stars.push(<i key={i} className={emptyStar}></i>)
+          )
     }
 
-    return stars;
+    return <span>{stars}</span>
   };
 
   const handleMovieInfo = (e) => {

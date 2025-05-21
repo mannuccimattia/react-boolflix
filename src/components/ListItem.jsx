@@ -18,7 +18,7 @@ const List = ({ item, searchType }) => {
 
     switch (lang) {
       case "en":
-        return "gb";
+        return "us";
       case "ja":
         return "jp";
       case "zh":
@@ -29,6 +29,18 @@ const List = ({ item, searchType }) => {
         return "cz";
       case "da":
         return "dk";
+      case "ur":
+        return "pk";
+      case "hi":
+        return "in";
+      case "ab":
+        return "ge";
+      case "ka":
+        return "ge";
+      case "el":
+        return "gr";
+      case "he":
+        return "il";
       default:
         return lang;
     }

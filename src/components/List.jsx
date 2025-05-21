@@ -2,7 +2,7 @@ import { useContext } from "react";
 import ListContext from "../contexts/ListContext";
 import ListItem from "./ListItem"
 
-const List = ({ searchType }) => {
+const List = () => {
   const list = useContext(ListContext);
 
   return (
@@ -11,7 +11,6 @@ const List = ({ searchType }) => {
         <ListItem
           key={item.id}
           item={item}
-          searchType={searchType}
         />
       ))}
     </>

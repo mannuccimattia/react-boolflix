@@ -1,7 +1,13 @@
 import axios from "axios"
 import { useState } from "react"
+import { useContext } from "react";
+import SearchTypeContext from "../contexts/SearchTypeContext";
 
-const ListItem = ({ item, searchType }) => {
+const ListItem = ({ item }) => {
+
+  // utilizzo il contesto SearchTypeContext destrutturandolo
+  const SearchType = useContext(SearchTypeContext)
+  const { searchType } = SearchType;
 
   // paths delle immagini dei poster
   const imgURL = `https://image.tmdb.org/t/p/w780${item.poster_path}`
